@@ -11,6 +11,7 @@
   <term apply="term">
     <empty apply="all-results" />
     <term-option>punctuation-insensitive</term-option>
+    <term-option>case-insensitive</term-option>   
     <term-option>stemmed</term-option>
   </term>
   <constraint name="collection">
