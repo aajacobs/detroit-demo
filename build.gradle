@@ -50,13 +50,13 @@ dependencies {
   compile("org.springframework.boot:spring-boot-devtools")
   
   // Provides integration points between Boot and MarkLogic
-  compile "com.marklogic:marklogic-spring-web:0.2.0"
+  compile "com.marklogic:marklogic-spring-web:0.1.2"
 
   // Needed for loading modules into MarkLogic
   compile "com.marklogic:ml-javaclient-util:2.7.1"
 
   // Needed for the Upload feature using mlcp
-  compile "com.marklogic:mlcp-util:0.1.2"
+  compile "com.marklogic:mlcp-util:0.2.0"
   runtime "commons-fileupload:commons-fileupload:1.3.1"
   
   // Needed for the SQL migration tool
