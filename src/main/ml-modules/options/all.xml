@@ -6,44 +6,52 @@
       <cts:directory-query>
         <cts:uri>/users/</cts:uri>
       </cts:directory-query>
+      <cts:collection-query xmlns:cts="http://marklogic.com/cts">
+        <cts:uri>http://marklogic.com/xdmp/documents</cts:uri>
+      </cts:collection-query>
+      <cts:collection-query xmlns:cts="http://marklogic.com/cts">
+        <cts:uri>http://marklogic.com/xdmp/spell</cts:uri>
+      </cts:collection-query>
     </cts:not-query>
   </additional-query>
   <term apply="term">
-    <empty apply="all-results" />
+    <empty apply="all-results"/>
     <term-option>punctuation-insensitive</term-option>
-    <term-option>case-insensitive</term-option>   
+    <term-option>case-insensitive</term-option>
     <term-option>stemmed</term-option>
   </term>
   <constraint name="collection">
     <collection prefix=""/>
   </constraint>
   <default-suggestion-source>
-    <word-lexicon collation="http://marklogic.com/collation/"></word-lexicon>
+    <range type="xs:string">
+      <element name="propaddr" ns=""/>
+    </range>
   </default-suggestion-source>
   <grammar>
-    <quotation>"</quotation>
+    <quotation>&quot;</quotation>
     <implicit>
-      <cts:and-query strength="20" xmlns:cts="http://marklogic.com/cts" />
+      <cts:and-query strength="20" xmlns:cts="http://marklogic.com/cts"/>
     </implicit>
-    <starter strength="30" apply="grouping" delimiter=")">(</starter>
-    <starter strength="40" apply="prefix" element="cts:not-query">-</starter>
-    <joiner strength="10" apply="infix" element="cts:or-query" tokenize="word">OR</joiner>
-    <joiner strength="20" apply="infix" element="cts:and-query" tokenize="word">AND</joiner>
-    <joiner strength="30" apply="infix" element="cts:near-query" tokenize="word">NEAR</joiner>
-    <joiner strength="30" apply="near2" consume="2" element="cts:near-query">NEAR/</joiner>
-    <joiner strength="50" apply="constraint">:</joiner>
-    <joiner strength="50" apply="constraint" compare="LT" tokenize="word">LT</joiner>
-    <joiner strength="50" apply="constraint" compare="LE" tokenize="word">LE</joiner>
-    <joiner strength="50" apply="constraint" compare="GT" tokenize="word">GT</joiner>
-    <joiner strength="50" apply="constraint" compare="GE" tokenize="word">GE</joiner>
-    <joiner strength="50" apply="constraint" compare="NE" tokenize="word">NE</joiner>
+    <starter apply="grouping" delimiter=")" strength="30">(</starter>
+    <starter apply="prefix" element="cts:not-query" strength="40">-</starter>
+    <joiner apply="infix" element="cts:or-query" strength="10" tokenize="word">OR</joiner>
+    <joiner apply="infix" element="cts:and-query" strength="20" tokenize="word">AND</joiner>
+    <joiner apply="infix" element="cts:near-query" strength="30" tokenize="word">NEAR</joiner>
+    <joiner apply="near2" consume="2" element="cts:near-query" strength="30">NEAR/</joiner>
+    <joiner apply="constraint" strength="50">:</joiner>
+    <joiner apply="constraint" compare="LT" strength="50" tokenize="word">LT</joiner>
+    <joiner apply="constraint" compare="LE" strength="50" tokenize="word">LE</joiner>
+    <joiner apply="constraint" compare="GT" strength="50" tokenize="word">GT</joiner>
+    <joiner apply="constraint" compare="GE" strength="50" tokenize="word">GE</joiner>
+    <joiner apply="constraint" compare="NE" strength="50" tokenize="word">NE</joiner>
   </grammar>
   <sort-order direction="descending">
-    <score />
+    <score/>
   </sort-order>
   <transform-results apply="snippet">
     <preferred-elements>
-      <element ns="" name="body" />
+      <element name="body" ns=""/>
     </preferred-elements>
     <max-matches>1</max-matches>
     <max-snippet-chars>150</max-snippet-chars>
@@ -54,7 +62,7 @@
     <state name="compact">
       <transform-results apply="snippet">
         <preferred-elements>
-          <element ns="" name="body" />
+          <element name="body" ns=""/>
         </preferred-elements>
         <max-matches>1</max-matches>
         <max-snippet-chars>150</max-snippet-chars>
@@ -64,7 +72,7 @@
     <state name="detailed">
       <transform-results apply="snippet">
         <preferred-elements>
-          <element ns="" name="body" />
+          <element name="body" ns=""/>
         </preferred-elements>
         <max-matches>2</max-matches>
         <max-snippet-chars>400</max-snippet-chars>
